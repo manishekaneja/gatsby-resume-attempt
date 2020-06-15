@@ -7,40 +7,62 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
-import "./layout.css"
+import "./layout.scss"
+import { makeStyles } from "@material-ui/core"
+import VerticalNavigation from "./VerticalNavigation"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+const drawerWidthLarge = 500
+const drawerWidthSmall = 300
+const progressWidth = 10
 
+const useTheme = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "stretch",
+    transition: theme.transitions.create("height", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.standard,
+    }),
+    backgroundColor: theme.palette.secondary.light,
+  },
+  drawer: {
+    boxShadow: theme.shadows[24],
+    zIndex: theme.zIndex.drawer,
+    width: drawerWidthLarge,
+    height: "100vh",
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.standard,
+    }),
+    [theme.breakpoints.between("md", "lg")]: {
+      width: drawerWidthSmall,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: progressWidth,
+    },
+  },
+  contentWraper: {
+    margin: "auto",
+    height: "100vh",
+    borderRadius: theme.shape.borderRadius,
+    flex: 1,
+    overflowY: "auto",
+  },
+}))
+
+const Layout = ({ children, ...props }) => {
+  const classes = useTheme()
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+    <div className={`${classes.root}`}>
+      <div className={classes.drawer}>
+        <VerticalNavigation {...props} />
       </div>
-    </>
+      <div className={classes.contentWraper}>
+        <main>{children}</main>
+      </div>
+    </div>
   )
 }
 
