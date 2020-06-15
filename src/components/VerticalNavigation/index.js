@@ -20,6 +20,9 @@ const useTheme = makeStyles(theme => ({
 }))
 function VerticalNavigation({ idx, updateIdx, sections }) {
   const classes = useTheme()
+  if (!sections) {
+    return null
+  }
   return (
     <div className={classes.root}>
       <div className={classes.navigationContainer}>
