@@ -55,8 +55,8 @@ const useNavTheme = makeStyles(theme => ({
     textTransform: "lowercase",
     minHeight: theme.spacing(9),
     transition: theme.transitions.create(["background-color", "padding"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.short,
     }),
     "&:hover": {
       backgroundColor: theme.palette.primary.main,

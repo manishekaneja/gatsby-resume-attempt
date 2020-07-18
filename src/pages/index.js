@@ -8,33 +8,30 @@ import Image from "../components/image"
 import { makeStyles, Typography } from "@material-ui/core"
 import Typed from "react-typed"
 
-const styles = {
-  containerStyle: {
-    height: "100vh",
-  },
+const useTheme = makeStyles(theme => ({
   slide: {
     padding: 15,
     minHeight: "100vh",
-    color: "#fff",
-  },
-  slide1: {
-    backgroundColor: "#FEA900",
-  },
-  slide2: {
-    backgroundColor: "#B3DC4A",
-  },
-  slide3: {
-    backgroundColor: "#6AC0FF",
-  },
-}
+    maxHeight: "100vh",
+  }
+}))
 
-const sections = ["About Me", "Knowledge_set", "Experience", "conatct me"]
+const sections = [
+  "About Me",
+  "Knowledge",
+  "Experiences",
+  "Projects",
+  "Contact Me",
+]
 const IndexPage = () => {
   const [idx, updateIdx] = React.useState(0)
+  const classes = useTheme()
   React.useEffect(() => {
     const action = event => {
       if (event.key === "ArrowDown") {
-        updateIdx(ps => (ps < 3 ? ps + 1 : 3))
+        updateIdx(ps =>
+          ps < sections.length - 1 ? ps + 1 : sections.length - 1
+        )
       } else if (event.key === "ArrowUp") {
         updateIdx(ps => (ps > 0 ? ps - 1 : 0))
       }
@@ -49,23 +46,16 @@ const IndexPage = () => {
       <Layout idx={idx} updateIdx={updateIdx} sections={sections}>
         <SEO title={sections[idx]} />
         <SwipeableViews
-          containerStyle={styles.containerStyle}
+          containerStyle={{
+            height: "100vh",
+          }}
           enableMouseEvents
           resistance
           axis="y"
           index={idx}
           onChangeIndex={updateIdx}
         >
-          <AboutSection />
-          <div style={Object.assign({}, styles.slide, styles.slide2)}>
-            slide n°2
-          </div>
-          <div style={Object.assign({}, styles.slide, styles.slide3)}>
-            slide n°3
-          </div>
-          <div style={Object.assign({}, styles.slide, styles.slide2)}>
-            slide n°4
-          </div>
+          <AboutSection className={`${classes.slide}`} />
         </SwipeableViews>
       </Layout>
     </ApplyTheme>
@@ -76,9 +66,6 @@ export default IndexPage
 
 const useAboutTheme = makeStyles(theme => ({
   root: {
-    padding: 15,
-    minHeight: "100vh",
-    maxHeight: "100vh",
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -107,10 +94,10 @@ const useAboutTheme = makeStyles(theme => ({
   },
 }))
 
-const AboutSection = () => {
+const AboutSection = ({ className, style }) => {
   const classes = useAboutTheme()
   return (
-    <div className={classes.root}>
+    <div className={`${className} ${classes.root}`}>
       <div className={classes.imageContainer}>
         <Image />
       </div>
