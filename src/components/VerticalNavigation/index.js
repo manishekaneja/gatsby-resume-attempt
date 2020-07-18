@@ -1,5 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core"
+import zIndex from "@material-ui/core/styles/zIndex"
 
 const useTheme = makeStyles(theme => ({
   root: {
@@ -43,8 +44,8 @@ export default VerticalNavigation
 
 const useNavTheme = makeStyles(theme => ({
   root: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: "transparent",
+    color: theme.palette.secondary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
     border: "none",
     outline: "none",
     padding: theme.spacing(3),
@@ -52,22 +53,25 @@ const useNavTheme = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
-    textTransform: "lowercase",
+    textTransform: "camelcase",
+    zIndex:0,
+    // boxShadow: theme.shado/ws[0],
     minHeight: theme.spacing(9),
-    transition: theme.transitions.create(["background-color", "padding"], {
+    transition: theme.transitions.create(["background-color", "padding","z-index","box-shadow"], {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.short,
     }),
     "&:hover": {
-      backgroundColor: theme.palette.primary.main,
-      boxShadow: theme.shadows[1],
+      boxShadow: theme.shadows[5],
+      zIndex:10
     },
     [theme.breakpoints.down("sm")]: {
       "&>span": {
         display: "none",
       },
       "&:hover": {
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.secondary.dark + "aa",
+        zIndex:5,
         boxShadow: theme.shadows[1],
       },
       backgroundColor: theme.palette.secondary.main,
@@ -75,18 +79,20 @@ const useNavTheme = makeStyles(theme => ({
     },
   },
   active: {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.primary.dark,
-    boxShadow: theme.shadows[20],
+    backgroundColor: theme.palette.secondary.dark,
+    color: theme.palette.secondary.light,
+    boxShadow: theme.shadows[10],
+    zIndex:theme.zIndex.drawer,
     [theme.breakpoints.down("sm")]: {
       "&>span": {
         display: "none",
       },
-      padding: theme.spacing(2),
+      padding: theme.spacing(1.5),
     },
 
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light,
+      backgroundColor: theme.palette.secondary.dark,
+      boxShadow: theme.shadows[7],
     },
   },
 }))
