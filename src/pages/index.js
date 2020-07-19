@@ -2,6 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import BackgroundShape from "../components/BackgroundShape/index"
 import ApplyTheme from "../components/ApplyTheme"
 import SwipeableViews from "react-swipeable-views"
 import Image from "../components/image"
@@ -13,7 +14,7 @@ const useTheme = makeStyles(theme => ({
     padding: 15,
     minHeight: "100vh",
     maxHeight: "100vh",
-  }
+  },
 }))
 
 const sections = [
@@ -23,9 +24,9 @@ const sections = [
   "Projects",
   "Contact Me",
 ]
-const IndexPage = () => {
+
+function useScreenTracker() {
   const [idx, updateIdx] = React.useState(0)
-  const classes = useTheme()
   React.useEffect(() => {
     const action = event => {
       if (event.key === "ArrowDown") {
@@ -41,10 +42,17 @@ const IndexPage = () => {
       window.removeEventListener("keydown", action)
     }
   })
+  return { idx, updateIdx }
+}
+
+const IndexPage = () => {
+  const { idx, updateIdx } = useScreenTracker()
+  const classes = useTheme()
   return (
     <ApplyTheme>
       <Layout idx={idx} updateIdx={updateIdx} sections={sections}>
         <SEO title={sections[idx]} />
+        <BackgroundShape idx={idx} />
         <SwipeableViews
           containerStyle={{
             height: "100vh",
