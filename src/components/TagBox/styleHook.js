@@ -17,6 +17,10 @@ const useTagBoxStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.short,
     }),
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(2),
+      fontSize: "1.2rem",
+    },
   },
 }))
 

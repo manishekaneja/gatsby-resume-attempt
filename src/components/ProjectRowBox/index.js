@@ -4,14 +4,15 @@ import { Typography } from "@material-ui/core"
 import git from "./work.svg"
 
 export default function ProjectRowBox({
+  className = "",
   name = "Untitled",
   details = "Can't Find Details",
-  leftAliged,
+  leftAliged = true,
 }) {
   const classes = useProjectRowStyles()
   return (
     <div
-      className={classes.root}
+      className={`${className} ${classes.root}`}
       style={{ flexDirection: leftAliged ? "row" : "row-reverse" }}
     >
       <div

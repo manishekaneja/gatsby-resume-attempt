@@ -10,37 +10,25 @@ const useAboutStyles = makeStyles(theme => ({
     width: "100%",
     gridTemplateColumns: "1fr",
     gridTemplateRows: "0px 0px 2fr 1fr 50px",
-    // [theme.breakpoints.up("sm")]: {
-    //   gridTemplateColumns: "0.2fr 5fr 5fr 0.2fr",
-    //   gridTemplateRows: "200px 2fr 200px",
-    //   flexDirection: "column",
-    //   justifyContent: "center",
-    // },
+    [theme.breakpoints.up("md")]: {
+      gridTemplateRows: "0px 1fr 1fr 1fr 0px",
+    },
   },
   header: {},
-  upperSection: {
-    // [theme.breakpoints.up("sm")]: {
-    //   gridColumn: "1/5",
-    //   display: "block",
-    // },
-  },
   middleSection: {
     "& h5": {
       fontSize: 40,
       textAlign: "center",
-      // [theme.breakpoints.up("sm")]: {
-      //   fontSize: 40,
-      //   fontWeight: 400,
-      // },
-      // [theme.breakpoints.up("lg")]: {
-      //   fontSize: 48,
-      //   fontWeight: 400,
-      // },
+    },
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      alignSelf: "stretch",
+      justifyContent: "space-evenly",
+      alignItems: "center",
     },
   },
   lowerSection: {
     textAlign: "center",
-    gridColumn: "1/1",
     "& h5": {
       fontWeight: 300,
       // [theme.breakpoints.up("sm")]: {
@@ -69,13 +57,16 @@ const useAboutStyles = makeStyles(theme => ({
       margin: 0,
       transform: "rotateZ(180deg)",
     },
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
   textContainer: {
     margin: `${theme.spacing(2)}px auto`,
     textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-    // [theme.breakpoints.up("sm")]: {
-    //   margin: "auto",
-    // },
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
+    },
   },
   imageContainer: {
     width: 250,
@@ -88,6 +79,12 @@ const useAboutStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.short,
     }),
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
+      width: 300,
+      height: 300,  
+    },
+
     // [theme.breakpoints.up("sm")]: {
     //   margin: "auto",
     //   width: 300,

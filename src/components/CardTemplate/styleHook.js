@@ -10,6 +10,9 @@ const useTemplateStyles = makeStyles(theme => ({
     width: "100%",
     gridTemplateColumns: "1fr",
     gridTemplateRows: "40px 40px 1fr 1fr 1fr",
+    [theme.breakpoints.up("md")]: {
+      gridTemplateRows: "20px 40px 1fr 1fr 1fr",
+    },
   },
   header: {
     height: "100%",
@@ -27,6 +30,11 @@ const useTemplateStyles = makeStyles(theme => ({
     },
     "& img": {
       margin: 0,
+    },
+    [theme.breakpoints.up("md")]: {
+      "& button": {
+        display: "none",
+      },
     },
   },
   upperSection: {

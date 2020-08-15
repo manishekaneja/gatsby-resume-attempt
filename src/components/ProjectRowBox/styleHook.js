@@ -6,12 +6,14 @@ const useProjectRowStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: "flex-start",
     padding: 10,
+    maxWidth: 1200,
+    margin: "auto",
   },
   contentContainer: {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    merginTop: "0.5rem",
+    marginTop: "0.5rem",
     "& p:first-child": {
       fontSize: "1.1rem",
       fontWeight: 500,
@@ -22,6 +24,14 @@ const useProjectRowStyles = makeStyles(theme => ({
       textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       fontWeight: 400,
     },
+    [theme.breakpoints.up("md")]: {
+      "& p:first-child": {
+        fontSize: "1.5rem",
+      },
+      "& p:nth-child(2)": {
+        fontSize: "1rem",
+      },  
+    }
   },
   projectImageContainer: {
     maxWidth: "9rem",
@@ -31,6 +41,15 @@ const useProjectRowStyles = makeStyles(theme => ({
     "& img": {
       width: "100%",
       height: "100%",
+    },
+    transition: "1s",
+    [theme.breakpoints.up(361)]: {
+      maxWidth: "10rem",
+      height: "5.5rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      maxWidth: "14rem",
+      height: "8rem",
     },
   },
 }))

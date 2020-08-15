@@ -1,11 +1,7 @@
 import React from "react"
 import useTagBoxStyles from "./styleHook"
 
-export default function TagBox({ children, minWidth = "fit-content" }) {
+export default function TagBox({ children }) {
   const classes = useTagBoxStyles()
-  return (
-    <div className={classes.root} style={{ minWidth }}>
-      {children}
-    </div>
-  )
+  return <div className={classes.root}>{children}</div>
 }

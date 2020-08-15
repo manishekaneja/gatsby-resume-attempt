@@ -50,6 +50,10 @@ const IndexPage = () => {
           containerStyle={{
             height: "100vh",
           }}
+          slideStyle={{
+            overflowX: "hidden",
+            overflowY: "auto",
+          }}
           enableMouseEvents
           axis="y"
           index={idx}

@@ -15,7 +15,11 @@ export default function ProjectSection({ update }) {
       middle={
         <div className={classes.middleSection}>
           {["Javascript", "React", "Redux"].map((techName, idx) => (
-            <ProjectRowBox key={techName} leftAliged={idx % 2 === 0} />
+            <ProjectRowBox
+              className={classes.projectRow}
+              key={techName}
+              leftAliged={idx % 2 === 0}
+            />
           ))}
         </div>
       }

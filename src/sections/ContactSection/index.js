@@ -23,22 +23,25 @@ export default function ContactSection({ update }) {
       lower={
         <div className={classes.lowerSection}>
           <Typography variant="body1">
-            If you wish to contact me, or willing to discuss an idea.{" "}
+            If you wish to contact me or wish to discuss an idea.{" "}
           </Typography>
           <Typography variant="body1">
             Just write a mail at <span>manishekaneja@gmail.com</span>{" "}
           </Typography>
           <Typography variant="body1">or</Typography>
+          <Typography variant="body1">
+            Connect with me <span>@LinkedIn</span>
+          </Typography>
         </div>
       }
       footer={
-        <div className={classes.footer}>
-          <Typography variant="body1">Connect With Me At</Typography>
-          <div>
+        <>
+          <div style={{ flex: 1 }} />
+          <div className={classes.footer}>
             <img src={linkedIn} alt={"linkedin"} />
             <img src={github} alt={"github"} />
           </div>
-        </div>
+        </>
       }
     />
   )

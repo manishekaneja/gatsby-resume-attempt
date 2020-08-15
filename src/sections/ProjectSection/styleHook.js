@@ -1,11 +1,17 @@
 import { makeStyles } from "@material-ui/core"
 const useKnowledgeStyles = makeStyles(theme => ({
   root: {
-    gridTemplateRows: "40px 40px 1fr 20px 180px",
+    gridTemplateRows: "40px 40px 1fr 40px 180px",
+    [theme.breakpoints.up("md")]: {
+      gridTemplateRows: "40px 40px 1fr 0.5fr 0px",
+    },
   },
   middleSection: {
     height: "100%",
     paddingLeft: 8,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
     paddingRight: 8,
     paddingTop: 4,
     transition: theme.transitions.create(["width", "height", "margin"], {
@@ -30,12 +36,22 @@ const useKnowledgeStyles = makeStyles(theme => ({
       fontWeight: 400,
       color: "#65617D",
     },
+    transition: "0.6s",
+    [theme.breakpoints.up("md")]: {
+      width: "50%",
+      marginLeft: "50%",
+    },
   },
   footer: {
     position: "relative",
     textAlign: "center",
     height: "100%",
     zIndex: 0,
+    transition: "0.6s",
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "50%",
+    },
   },
   imageContainer: {
     position: "absolute",
@@ -49,21 +65,9 @@ const useKnowledgeStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.short,
     }),
-    [theme.breakpoints.up("sm")]: {
-      top: 60,
-    },
-    [theme.breakpoints.up("lg")]: {
-      right: 100,
-    },
     "& img": {
       margin: 0,
       maxHeight: 350,
-      [theme.breakpoints.up("sm")]: {
-        maxHeight: 600,
-      },
-      [theme.breakpoints.up("lg")]: {
-        maxHeight: 700,
-      },
     },
   },
 }))

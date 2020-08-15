@@ -18,14 +18,21 @@ export default function ExperienceSection({ update }) {
           <div className={classes.imageContainer}>
             <img src={image} alt="git" />
           </div>
-          <div class="tags">
+          <div className="tags mobile">
             {[`4yrs of B.Tech`, `4yrs of Dev.`, `1yr of IT Ind.`].map(
               expName => (
-                <TagBox key={expName} minWidth={150}>
-                  {expName}
-                </TagBox>
+                <TagBox key={expName}>{expName}</TagBox>
               )
             )}
+          </div>
+          <div className="tags desktop">
+            {[
+              `4yrs of B.Tech`,
+              `4yrs of Development`,
+              `1yr of IT Industry`,
+            ].map(expName => (
+              <TagBox key={expName}>{expName}</TagBox>
+            ))}
           </div>
         </div>
       }

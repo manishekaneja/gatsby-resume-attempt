@@ -17,7 +17,7 @@ export default function KnowledgeSection({ update }) {
           <div className={classes.imageContainer}>
             <img src={git} alt="git" />
           </div>
-          <div class="tags">
+          <div className="tags">
             {["Javascript", "React", "Redux", "Git", "Node", "Mongo"].map(
               techName => (
                 <TagBox key={techName}>{techName} </TagBox>

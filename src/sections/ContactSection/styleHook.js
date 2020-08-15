@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core"
 const useContactStyles = makeStyles(theme => ({
   root: {
-    gridTemplateRows: "40px 40px 80px 1fr 0.5fr",
+    gridTemplateRows: "40px 40px 80px 1fr 140px",
   },
   middleSection: {
     position: "relative",
@@ -10,8 +10,7 @@ const useContactStyles = makeStyles(theme => ({
   },
   lowerSection: {
     textAlign: "center",
-    maxWidth: "80%",
-    margin: "auto",
+    margin: "auto 10%",
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -26,32 +25,21 @@ const useContactStyles = makeStyles(theme => ({
       fontWeight: 500,
       color: "#65617D",
     },
+    [theme.breakpoints.up(361)]: {
+      "& p": {
+        fontSize: "1.3rem",
+      },
+    },
   },
   footer: {
-    height: "100%",
     display: "flex",
-    justifyContent: "stretch",
-    alignItems: "flex-start",
-    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-end",
     textAlign: "center",
     zIndex: 1,
-    "& p": {
-      margin: "auto",
-      fontSize: "1.2rem",
-      textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-      fontWeight: 400,
-    },
-    "& p span": {
-      fontWeight: 500,
-      color: "#65617D",
-    },
-    "& div": {
-      display: "flex",
-      flex: 1,
-      justifyContent: "space-around",
-      minWidth: "50%",
-      margin: "auto",
-      alignItems: "center",
+    boxShadow: theme.shadows[5],
+    "& img": {
+      margin: "10px 20px",
     },
   },
   imageContainer: {
@@ -64,20 +52,9 @@ const useContactStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.short,
     }),
-    [theme.breakpoints.up("sm")]: {
-      top: 60,
-    },
-    [theme.breakpoints.up("lg")]: {
-      right: 100,
-    },
+
     "& img": {
       maxHeight: 350,
-      [theme.breakpoints.up("sm")]: {
-        maxHeight: 600,
-      },
-      [theme.breakpoints.up("lg")]: {
-        maxHeight: 700,
-      },
     },
   },
 }))
