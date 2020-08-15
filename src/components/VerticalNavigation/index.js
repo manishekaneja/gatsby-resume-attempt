@@ -4,7 +4,7 @@ import NavigationLink from "./NavigationLink"
 
 const useTheme = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.secondary.light,
     color: theme.palette.primary.contrastText,
     height: "100%",
     display: "flex",

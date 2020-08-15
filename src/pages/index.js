@@ -5,17 +5,11 @@ import SEO from "../components/seo"
 import BackgroundShape from "../components/BackgroundShape/index"
 import ApplyTheme from "../components/ApplyTheme"
 import SwipeableViews from "react-swipeable-views"
-import Image from "../components/image"
-import { makeStyles, Typography } from "@material-ui/core"
-import Typed from "react-typed"
-
-const useTheme = makeStyles(theme => ({
-  slide: {
-    padding: 15,
-    minHeight: "100vh",
-    maxHeight: "100vh",
-  },
-}))
+import AboutSection from "../sections/AboutSection/index"
+import KnowledgeSection from "../sections/KnowledgeSection"
+import ExperienceSection from "../sections/ExperienceSection"
+import ProjectSection from "../sections/ProjectSection"
+import ContactSection from "../sections/ContactSection"
 
 const sections = [
   "About Me",
@@ -47,7 +41,6 @@ function useScreenTracker() {
 
 const IndexPage = () => {
   const { idx, updateIdx } = useScreenTracker()
-  const classes = useTheme()
   return (
     <ApplyTheme>
       <Layout idx={idx} updateIdx={updateIdx} sections={sections}>
@@ -57,13 +50,24 @@ const IndexPage = () => {
           containerStyle={{
             height: "100vh",
           }}
+          slideStyle={{
+            overflowX: "hidden",
+            overflowY: "auto",
+          }}
           enableMouseEvents
-          resistance
           axis="y"
           index={idx}
           onChangeIndex={updateIdx}
         >
-          <AboutSection className={`${classes.slide}`} />
+          {[
+            AboutSection,
+            KnowledgeSection,
+            ExperienceSection,
+            ProjectSection,
+            ContactSection,
+          ].map((Component, idx) => (
+            <Component key={idx} update={() => updateIdx(idx <= 0 ? 1 : 0)} />
+          ))}
         </SwipeableViews>
       </Layout>
     </ApplyTheme>
@@ -71,56 +75,3 @@ const IndexPage = () => {
 }
 
 export default IndexPage
-
-const useAboutTheme = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      justifyContent: "center",
-    },
-  },
-  textContainer: {
-    maxWidth: 600,
-    margin: "auto",
-    [theme.breakpoints.down("md")]: {
-      margin: `${theme.spacing(5)}px auto`,
-    },
-  },
-  imageContainer: {
-    width: 250,
-    height: 250,
-    borderRadius: "50%",
-    overflow: "hidden",
-    boxShadow: theme.shadows[5],
-    margin: "auto",
-    [theme.breakpoints.down("md")]: {
-      margin: `${theme.spacing(5)}px auto`,
-    },
-  },
-}))
-
-const AboutSection = ({ className, style }) => {
-  const classes = useAboutTheme()
-  return (
-    <div className={`${className} ${classes.root}`}>
-      <div className={classes.imageContainer}>
-        <Image />
-      </div>
-      <div className={classes.textContainer}>
-        <Typography variant="h5">
-          <Typed
-            strings={[
-              "Hi, made by manish aneja, (i.e me) and here you will get to know about me only",
-            ]}
-            showCursor={false}
-            typeSpeed={40}
-          />
-        </Typography>
-        <Typography variant="h3">Loream Ipsum </Typography>
-      </div>
-    </div>
-  )
-}

@@ -42,7 +42,10 @@ const useTheme = makeStyles(theme => ({
     left: 0,
     top: 0,
     width: "100vw",
-    transition: "1s",
+    transition: theme.transitions.create(["clip-path"], {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.short,
+    }),
     height: "100vh",
     background: `linear-gradient(90deg,${theme.palette.primary.main},${theme.palette.primary.dark})`,
   },
@@ -52,16 +55,7 @@ export default function BackgroundShape({ idx }) {
   const classes = useTheme()
   const { width, height } = useDimensions()
   const { corner } = useRandomCornerFinder(idx)
-  //   updateCorner
-  //   const [shape, updateShape] = React.useState({
-  //     previousShape: `0,0 ${previousCorner.x},${previousCorner.y} ${width},${height} 0,${height}`,
-  //     newShape: `0,0 ${corner.x},${corner.y} ${width},${height} 0,${height}`,
-  //   })
-  //   React.useEffect(() => {}, [corner])
-  //   console.log({ corner, previousCorner })
-
   return (
-    <>
       <div
         className={classes.backgroundShape}
         style={{
@@ -80,34 +74,6 @@ export default function BackgroundShape({ idx }) {
              ${width}px ${height}px,
              0px ${height}px )`,
         }}
-      ></div>
-      <div></div>
-      {/* <svg
-          width="100vw"
-          height="100vh"
-          style={{ position: "absolute", left: 0, top: 0 }}
-        >
-          <linearGradient id="gradient">
-            <stop offset="0" stopColor="#bde390" />
-            <stop offset="1" stopColor="#92bc83" />
-          </linearGradient>
-          <polygon style={{ fill: `url(#gradient)`, transition: 1000 }}>
-            <animate
-              attributeName="points"
-              dur="1s"
-              fill="freeze"
-              from={shape.previousShape}
-              to={shape.newShape}
-            />
-          </polygon>
-          <line
-            x1={width}
-            y1={0}
-            x2={corner.x}
-            y2={corner.y}
-            style={{ stroke: "#92bc83", strokeWidth: 2, transition: 1000 }}
-          />
-        </svg> */}
-    </>
+      />
   )
 }
