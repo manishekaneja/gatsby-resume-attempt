@@ -2,7 +2,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core"
 
 function useDimensions() {
-  const [dimensions, setDimensions] = React.useState(getDimensions())
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 })
   function getDimensions() {
     return {
       width: window.innerWidth,
@@ -56,10 +56,10 @@ export default function BackgroundShape({ idx }) {
   const { width, height } = useDimensions()
   const { corner } = useRandomCornerFinder(idx)
   return (
-      <div
-        className={classes.backgroundShape}
-        style={{
-          clipPath: `polygon(0px 0px,
+    <div
+      className={classes.backgroundShape}
+      style={{
+        clipPath: `polygon(0px 0px,
             ${
               width > 500
                 ? `
@@ -73,7 +73,7 @@ export default function BackgroundShape({ idx }) {
             }
              ${width}px ${height}px,
              0px ${height}px )`,
-        }}
-      />
+      }}
+    />
   )
 }
