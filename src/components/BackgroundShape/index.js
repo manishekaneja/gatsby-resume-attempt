@@ -2,16 +2,19 @@ import React from "react"
 import { makeStyles } from "@material-ui/core"
 
 function useDimensions() {
-  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 })
+  const [dimensions, setDimensions] = React.useState(getDimensions())
   function getDimensions() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
+    if (typeof window !== `undefined`) {
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
+    } else {
+      return { width: 0, height: 0 }
     }
   }
   const updateDimensions = React.useCallback(() => {
-    console.log("updated Called")
-    setDimensions(getDimensions)
+      setDimensions(getDimensions)
   }, [setDimensions])
   React.useEffect(() => {
     window.addEventListener("load", updateDimensions)
