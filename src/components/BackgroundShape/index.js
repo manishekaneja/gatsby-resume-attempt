@@ -9,13 +9,18 @@ function useDimensions() {
       height: window.innerHeight,
     }
   }
-  function updateDimensions() {
+  const updateDimensions = React.useCallback(() => {
+    console.log("updated Called")
     setDimensions(getDimensions)
-  }
+  }, [setDimensions])
   React.useEffect(() => {
+    window.addEventListener("load", updateDimensions)
     window.addEventListener("resize", updateDimensions)
-    return () => window.removeEventListener("resize", updateDimensions)
-  })
+    return () => {
+      window.removeEventListener("resize", updateDimensions)
+      window.removeEventListener("load", updateDimensions)
+    }
+  }, [updateDimensions])
   return dimensions
 }
 function useRandomCornerFinder(idx) {
